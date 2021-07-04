@@ -1,8 +1,33 @@
+html {
+  font-size: 16px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+    width: 100vw;
+}
+
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  color: inherit;
+  font: inherit;
+
+  line-height: normal;
+
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  -webkit-appearance: none;
 }
 
 .App {
@@ -12,16 +37,51 @@ body {
   font-size: 1.1rem;
 }
 
-button {
+header {
+  display: flex;
+  background-color: #c7293c;
+  color: white;
+  text-align: center;
+  box-shadow: 0px 10px 20px 0px rgba(100,51,51,0.49);
+  align-items: center;
+  justify-content: space-around;
+}
+
+h1 {
+  margin: 0;
+  padding: 1.5rem 0;
+}
+
+.add-button {
   background: #007c00;
   color: white;
   padding: 0.4em 1em;
   border-radius: 10px;
   border: none;
+  margin: 0 auto;
+}
+
+.remove-button {
+  background: #7c0000;
+  color: white;
+  padding: 0.4em 1em;
+  border-radius: 10px;
+  border: none;
+  margin: 0 auto;
 }
 
 button:disabled {
   background: #aaaaaa;
+}
+
+.basket-button, .likes-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.basket-button img, .likes-button img {
+  margin-right: 0.5rem;
 }
 
 .menu-list {
@@ -34,12 +94,34 @@ button:disabled {
 
 .menu-item {
   margin: 1em;
+  display: flex;
+  flex-direction: column;
 }
 
 .menu-img {
   width: 10em;
   height: 10em;
   object-fit: cover;
+}
+
+.basket-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pizza-name {
+  max-width: 11rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+}
+
+.button-container .add-button {
+  margin-bottom: 0.5rem;
 }
 
 /* p {

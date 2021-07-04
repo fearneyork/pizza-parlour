@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import basketImage from "./assets/shopping_basket_white.svg";
+import likesImage from "./assets/thumb_up_white.svg";
 
 const emptyBasket = {
   "Can't Cook Won't Cluck!(VE)": 0,
@@ -12,17 +14,17 @@ const App = () => {
     {
       name: "Can't Cook Won't Cluck!(VE)",
       imageUrl:
-        'https://cdn.pixabay.com/photo/2017/12/05/20/09/pizza-3000274_1280.jpg',
+        'https://pbs.twimg.com/media/EDXhBX3XkAAOaEo.jpg',
     },
     {
       name: "Gieseppe's Not Sloppy, He's Vegan (VE)",
       imageUrl:
-        'https://cdn.pixabay.com/photo/2016/11/29/13/02/cheese-1869708_1280.jpg',
+        'https://ilovemanchester.com/wp-content/uploads/2019/05/Crazy-Pedro-%E2%80%9CGIUSEPPE%E2%80%99S-NOT-SLOPPY-HE%E2%80%99S-VEGAN%E2%80%9D-OCTOBER-SPECIAL-.jpg',
     },
     {
       name: "Nacho Libre (V)",
       imageUrl:
-        'https://cdn.pixabay.com/photo/2020/02/04/12/14/pepperoni-4818019_1280.jpg',
+        'https://pbs.twimg.com/media/CVuSmXJUEAA85fP.jpg:large',
     },
     {
       name: "Mock Duck (VE)",
@@ -65,26 +67,38 @@ const App = () => {
   }
 
   return (
-    <div className="App">
-      <Header />
-      <Likes likeCount={likeCount} increaseLikes={increaseLikes} />
+    <>
+      <Header basket={basket}>
+        <Likes likeCount={likeCount} increaseLikes={increaseLikes} />
+      </Header>
       <Menu isConfirmed={isConfirmed} pizzas={pizzas} addToBasket={addToBasket} removeFromBasket={removeFromBasket} basket={basket} />
       <Basket isConfirmed={isConfirmed} basket={basket} clearBasket={clearBasket}/>
       <br></br>
       <Confirmation isConfirmed={isConfirmed} confirmationMessage={confirmationMessage} />
-    </div>
+    </>
   );
 };
 
-const Header = () => {
-  return <h1>HY Part-Time Pizza Parlour</h1>
+const Header = ({basket, children}) => {
+  return (
+    <header>
+      {children}
+      <h1><em>HY Part-Time Pizza Parlour</em></h1>
+      <button className="basket-button">
+        <img src={basketImage} alt="basket icon"></img>
+        <p>{Object.values(basket).reduce((a, b) => a + b)}</p>
+      </button>
+    </header>
+  )
 }
 
 const Likes = ({likeCount, increaseLikes}) => {
   return(
   <section className="likes">
-    <h2>Likes : {likeCount}</h2>
-    <button onClick={increaseLikes} >+1 Likes</button>
+    <button className="likes-button" onClick={increaseLikes}>
+      <img src={likesImage} alt="likes icon"></img>
+      <p>{likeCount}</p>
+    </button>
   </section>
   )
 }
@@ -100,11 +114,11 @@ const Menu = ({isConfirmed, pizzas, addToBasket, removeFromBasket, basket}) => {
                 alt={pizza.name}
                 className="menu-img"
               ></img>
-              <p>{pizza.name}</p>
-              <button onClick={() => addToBasket(pizza.name)} disabled={isConfirmed}>+1 to Basket</button>
-              <br></br>
-              <button onClick={() => removeFromBasket(pizza.name)} disabled={basket[pizza.name] >= 1 && !isConfirmed ? false: true} >-1 from Basket</button>
-              <br></br>
+              <p className="pizza-name">{pizza.name}</p>
+              <div className="button-container">
+                <button className="add-button" onClick={() => addToBasket(pizza.name)} disabled={isConfirmed}>+1 to Basket</button>
+                <button className="remove-button" onClick={() => removeFromBasket(pizza.name)} disabled={basket[pizza.name] >= 1 && !isConfirmed ? false: true} >-1 from Basket</button>
+              </div>
             </li>
           );
         })}
@@ -119,15 +133,13 @@ const Basket = ({isConfirmed, basket, clearBasket}) => {
           {Object.keys(basket).map((item) => {
             return (
               <li key={item} className="basket-item">
-                <ul>
                   {item} Qty: {basket[item]}
-                </ul>
               </li>
             )
           })}
       </ul>
       <p> Total Pizzas in basket: {Object.values(basket).reduce((a, b) => a + b)} </p>
-      <button onClick={clearBasket} disabled={isConfirmed}>Clear Basket</button>
+      <button className="remove-button" onClick={clearBasket} disabled={isConfirmed}>Clear Basket</button>
     </section>
   );
 }
@@ -135,7 +147,7 @@ const Basket = ({isConfirmed, basket, clearBasket}) => {
 const Confirmation = ({isConfirmed, confirmationMessage}) => {
   return(
     <section>
-      <button onClick={confirmationMessage} disabled={isConfirmed}>Confirmation</button>
+      <button className="add-button" onClick={confirmationMessage} disabled={isConfirmed}>Confirmation</button>
     </section>
   );
 }
