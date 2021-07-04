@@ -1,3 +1,5 @@
+@import-normalize;
+
 html {
   font-size: 16px;
 }
@@ -7,7 +9,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 button {
@@ -16,18 +18,11 @@ button {
   padding: 0;
   width: auto;
   overflow: visible;
-
   background: transparent;
-
   color: inherit;
   font: inherit;
-
   line-height: normal;
-
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-
-  -webkit-appearance: none;
+  cursor: pointer;
 }
 
 .App {
@@ -42,9 +37,12 @@ header {
   background-color: #c7293c;
   color: white;
   text-align: center;
-  box-shadow: 0px 10px 20px 0px rgba(100,51,51,0.49);
+  box-shadow: 0px 10px 20px 0px rgba(100,51,51,0.5);
   align-items: center;
   justify-content: space-around;
+  position: relative;
+  z-index: 0;
+
 }
 
 h1 {
@@ -84,7 +82,21 @@ button:disabled {
   margin-right: 0.5rem;
 }
 
+/* MENU AND BASKET */
+
+.wrapper {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+}
+
+.wrapper-around {
+  justify-content: space-around;
+}
+
 .menu-list {
+  margin-top: 1rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -93,7 +105,7 @@ button:disabled {
 }
 
 .menu-item {
-  margin: 1em;
+  margin: 0em 1em 1em 1em;
   display: flex;
   flex-direction: column;
 }
@@ -102,6 +114,12 @@ button:disabled {
   width: 10em;
   height: 10em;
   object-fit: cover;
+}
+
+.basket {
+  padding: 1rem;
+  box-shadow: -10px 0px 20px 0px rgba(100,51,51,0.5);
+  background-color: white;
 }
 
 .basket-list {
