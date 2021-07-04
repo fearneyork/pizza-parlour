@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+.App {
+  text-align: center;
+  color: #c7293c;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+button {
+  background: #007c00;
+  color: white;
+  padding: 0.4em 1em;
+  border-radius: 10px;
+  border: none;
+}
+
+button:disabled {
+  background: #aaaaaa;
+}
+
+.menu-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-item {
+  margin: 1em;
+}
+
+.menu-img {
+  width: 10em;
+  height: 10em;
+  object-fit: cover;
+}
+
+/* p {
+  word-break: break-all;
+} */
